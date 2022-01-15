@@ -11,7 +11,7 @@
 </template>
 
 <script lang="ts">
-import { ref, computed, watch, defineComponent, toRefs } from "vue";
+import { defineComponent } from "vue";
 import Carousel from "@/components/Carousel.vue";
 import Navbar from "@/components/Navbar.vue";
 import { useStore } from "vuex";
@@ -22,7 +22,7 @@ export default defineComponent({
     Carousel,
     Navbar,
   },
-  setup(props: any, context: any) {
+  setup() {
     const store = useStore();
     store.dispatch("data/setData");
     return {};

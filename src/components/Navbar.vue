@@ -27,13 +27,12 @@
 </template>
 
 <script lang="ts">
-import { ref, computed, watch, defineComponent, toRefs } from "vue";
-import Carousel from "@/components/Carousel.vue";
+import { ref, computed, defineComponent } from "vue";
 import { useStore } from "vuex";
 
 export default defineComponent({
   name: "Navbar",
-  setup(props: any, context: any) {
+  setup() {
     const store = useStore();
     const open = ref(false);
     const expandedData = computed(() => store.getters["data/currentDataInfo"]);
@@ -55,7 +54,6 @@ export default defineComponent({
     );
 
     const getImage = () => {
-      console.log(category.value);
       switch (category.value) {
         case "Featured":
           return require("@/assets/featured/" + expandedData.value.img);

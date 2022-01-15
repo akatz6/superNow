@@ -37,7 +37,6 @@ export const mutations = {
     state.category = category;
   },
   setBooking(state: any, payload: any) {
-    console.log(payload);
     switch (payload.category) {
       case "Featured":
         state.featured[payload.id].check = !state.featured[payload.id].check;
@@ -45,7 +44,6 @@ export const mutations = {
       case "Arts and Crafts":
         state.artsCrafts[payload.id].check =
           !state.artsCrafts[payload.id].check;
-        console.log(state.artsCrafts[payload.id]);
         break;
       case "Small Group Socials":
         state.smallSocial[payload.id].check =

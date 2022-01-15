@@ -2,7 +2,11 @@
   <br />
   <h3 class="title">{{ title }}</h3>
   <div class="navigate">
-    <div v-if="0 < start" class="toggle-page left left-arrow" @click="leftShift">
+    <div
+      v-if="0 < start"
+      class="toggle-page left left-arrow"
+      @click="leftShift"
+    >
       <i class="fas fa-chevron-left"></i>
     </div>
     <div class="card-row">
@@ -45,14 +49,14 @@
 </template>
 
 <script lang="ts">
-import { ref, computed, watch, defineComponent, toRefs } from "vue";
+import { ref, computed, defineComponent } from "vue";
 import { useStore } from "vuex";
 
 export default defineComponent({
   name: "Carousel",
   components: {},
   props: ["item"],
-  setup(props: any, context: any) {
+  setup(props: any) {
     const store = useStore();
     let basicData = computed(() => store.getters[`data/${props.item}`]);
     let start = ref(0);

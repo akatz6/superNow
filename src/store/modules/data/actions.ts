@@ -1,5 +1,5 @@
 export const actions = {
-  setData({ commit, dispatch }: any) {
+  setData({ commit }: any) {
     commit("resetFeaturedBasicData");
     commit("resetArtBasicData");
     commit("resetSmallSocial");
@@ -194,13 +194,13 @@ export const actions = {
     };
     commit("setSmallSocial", smallEight);
   },
-  getMoreData({ commit, dispatch }: any, payload: any) {
+  getMoreData({ commit }: any, payload: any) {
     commit("getMoreData", payload);
   },
-  setCategory({ commit, dispatch }: any, category: string) {
+  setCategory({ commit }: any, category: string) {
     commit("setCategory", category);
   },
-  setBooking({ commit, dispatch }: any, payload: any) {
+  setBooking({ commit }: any, payload: any) {
     commit("setBooking", payload);
   },
 };
