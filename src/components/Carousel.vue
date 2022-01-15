@@ -1,0 +1,141 @@
+<template>
+  <br />
+  <h3 style="display: flex; margin: 20px">{{ title }}</h3>
+  <div class="navigate" style="display: flex">
+    <div
+      v-if="0 < start"
+      class="toggle-page left"
+      style="align-self: center; margin: 0 10px"
+      @click="leftShift"
+    >
+      <i class="fas fa-chevron-left"></i>
+    </div>
+    <div style="display: flex">
+      <div style="padding: 20px; display: contents">
+        <div v-for="(item, index) in basicData" :key="index">
+          <transition class="slide">
+            <div
+              v-if="index >= start && index < end"
+              class="card"
+              @click="getMoreData(index)"
+            >
+              <div class="card-body">
+                <h5 class="card-title" style="height: 30px">
+                  {{ item.title }}
+                </h5>
+                <img
+                  :src="getImage(item.img)"
+                  class="card-img-top"
+                  :alt="item.img"
+                  style="margin: 20px 5px; height: 100px"
+                />
+                <p class="card-text">{{ item.tagLine }}</p>
+              </div>
+            </div>
+          </transition>
+        </div>
+
+        <div
+          v-if="basicData.length > end"
+          class="toggle-page right"
+          style="align-self: center"
+          @click="rightShift"
+        >
+          <i class="fas fa-chevron-right"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br />
+</template>
+
+<script lang="ts">
+import { ref, computed, watch, defineComponent, toRefs } from "vue";
+import Carousel from "@/components/Carousel.vue";
+import { useStore } from "vuex";
+
+export default defineComponent({
+  name: "Home",
+  props: ["item"],
+  setup(props: any, context: any) {
+    const store = useStore();
+    const basicData = store.getters[`data/${props.item}`];
+    let start = ref(0);
+    let end = ref(Math.floor(screen.width / 300));
+    let range = ref(
+      Math.floor(end.value / 2) > 1 ? Math.floor(end.value / 2) : 1
+    );
+    let title = ref("");
+    switch (props.item) {
+      case "getFeaturedBasicData":
+        title.value = "Featured";
+        break;
+      case "getArtBasicData":
+        title.value = "Arts and Crafts";
+        break;
+      case "getSmallBasicData":
+        title.value = "Small Group Socials";
+        break;
+    }
+
+    const rightShift = () => {
+      start.value += range.value;
+      end.value += range.value;
+    };
+
+    const leftShift = () => {
+      end.value -= range.value;
+      start.value -= range.value;
+    };
+    const getImage = (imagePath: any) => {
+      switch (props.item) {
+        case "getFeaturedBasicData":
+          return require("@/assets/featured/" + imagePath);
+        case "getArtBasicData":
+          return require("@/assets/arts/" + imagePath);
+        case "getSmallBasicData":
+          return require("@/assets/groups/" + imagePath);
+      }
+    };
+
+    const getMoreData = (id: number) => {
+      console.log(id);
+    };
+
+    return {
+      start,
+      end,
+      rightShift,
+      leftShift,
+      basicData,
+      title,
+      getImage,
+      getMoreData,
+    };
+  },
+});
+</script>
+
+<style lang="scss" scoped>
+.card {
+  height: 270px;
+  width: 200px;
+  padding: 20px;
+  margin: 20px;
+}
+
+.slide-enter-active,
+.slide-leave-active {
+  transition: opacity 0.4s ease-in-out;
+}
+
+.slide-enter-from,
+.slide-leave-to {
+  opacity: 0;
+}
+
+.slide-enter-to,
+.slide-leave-from {
+  opacity: 1;
+}
+</style>
