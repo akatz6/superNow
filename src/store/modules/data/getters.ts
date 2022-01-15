@@ -10,4 +10,10 @@ export const getters = {
   getSmallBasicData(state: any): BasicData {
     return state.smallSocial;
   },
+  currentDataInfo(state: any): BasicData {
+    return state.currentDataInfo[0];
+  },
+  getCategory(state: any): string {
+    return state.category;
+  },
 };

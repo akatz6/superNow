@@ -20,6 +20,14 @@
               @click="getMoreData(index)"
             >
               <div class="card-body">
+                <div v-if="item.check">
+                <i
+                  
+                  class="fa fa-check"
+                  aria-hidden="true"
+                  style="position: absolute; top: 0; right: 0"
+                ></i>
+                </div>
                 <h5 class="card-title" style="height: 30px">
                   {{ item.title }}
                 </h5>
@@ -34,7 +42,6 @@
             </div>
           </transition>
         </div>
-
         <div
           v-if="basicData.length > end"
           class="toggle-page right"
@@ -51,20 +58,24 @@
 
 <script lang="ts">
 import { ref, computed, watch, defineComponent, toRefs } from "vue";
-import Carousel from "@/components/Carousel.vue";
 import { useStore } from "vuex";
 
 export default defineComponent({
-  name: "Home",
+  name: "Carousel",
+  components: {},
   props: ["item"],
   setup(props: any, context: any) {
     const store = useStore();
-    const basicData = store.getters[`data/${props.item}`];
+    let basicData = computed(() => store.getters[`data/${props.item}`]);
     let start = ref(0);
     let end = ref(Math.floor(screen.width / 300));
     let range = ref(
       Math.floor(end.value / 2) > 1 ? Math.floor(end.value / 2) : 1
     );
+    if (end.value > basicData.value.length) {
+      end.value = basicData.value.length;
+      start.value == 0;
+    }
     let title = ref("");
     switch (props.item) {
       case "getFeaturedBasicData":
@@ -99,7 +110,12 @@ export default defineComponent({
     };
 
     const getMoreData = (id: number) => {
-      console.log(id);
+      const payload = {
+        id,
+        category: title.value,
+      };
+      store.dispatch("data/getMoreData", payload);
+      store.dispatch("data/setCategory", title.value);
     };
 
     return {
