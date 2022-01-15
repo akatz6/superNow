@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <div style="float: right; width: 25%">
+    <div class="feature">
       <navbar />
     </div>
 
@@ -29,3 +29,10 @@ export default defineComponent({
   },
 });
 </script>
+
+<style lang="scss" scoped>
+.feature {
+  float: right;
+  width: 25%;
+}
+</style>

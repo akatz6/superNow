@@ -58,7 +58,8 @@ export const actions = {
       img: "dogThree.jpeg",
       title: "Lobortis mattis",
       tagLine: "fermentum posuere",
-      extendedDescription: "Nulla aliquet porttitor lacus luctus accumsan tortor posuere ac ut. Viverra aliquet eget sit amet tellus cras adipiscing enim eu. Porttitor massa id neque aliquam vestibulum morbi blandit cursus risus. Lectus magna fringilla urna porttitor rhoncus dolor. Neque aliquam vestibulum morbi blandit cursus. Enim diam vulputate ut pharetra sit. Facilisi cras fermentum odio eu feugiat pretium. Imperdiet nulla malesuada pellentesque elit eget gravida. Ac tortor dignissim convallis aenean et tortor at risus. Aliquet eget sit amet tellus. Amet cursus sit amet dictum sit amet justo donec enim. Sit amet nisl suscipit adipiscing bibendum est ultricies. Fames ac turpis egestas sed tempus urna et pharetra pharetra.",
+      extendedDescription:
+        "Nulla aliquet porttitor lacus luctus accumsan tortor posuere ac ut. Viverra aliquet eget sit amet tellus cras adipiscing enim eu. Porttitor massa id neque aliquam vestibulum morbi blandit cursus risus. Lectus magna fringilla urna porttitor rhoncus dolor. Neque aliquam vestibulum morbi blandit cursus. Enim diam vulputate ut pharetra sit. Facilisi cras fermentum odio eu feugiat pretium. Imperdiet nulla malesuada pellentesque elit eget gravida. Ac tortor dignissim convallis aenean et tortor at risus. Aliquet eget sit amet tellus. Amet cursus sit amet dictum sit amet justo donec enim. Sit amet nisl suscipit adipiscing bibendum est ultricies. Fames ac turpis egestas sed tempus urna et pharetra pharetra.",
       check: false,
     };
     commit("setArtBasicData", artThree);

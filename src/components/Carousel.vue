@@ -1,17 +1,12 @@
 <template>
   <br />
-  <h3 style="display: flex; margin: 20px">{{ title }}</h3>
-  <div class="navigate" style="display: flex">
-    <div
-      v-if="0 < start"
-      class="toggle-page left"
-      style="align-self: center; margin: 0 10px"
-      @click="leftShift"
-    >
+  <h3 class="title">{{ title }}</h3>
+  <div class="navigate">
+    <div v-if="0 < start" class="toggle-page left left-arrow" @click="leftShift">
       <i class="fas fa-chevron-left"></i>
     </div>
-    <div style="display: flex">
-      <div style="padding: 20px; display: contents">
+    <div class="card-row">
+      <div class="card-inner-row">
         <div v-for="(item, index) in basicData" :key="index">
           <transition class="slide">
             <div
@@ -21,21 +16,15 @@
             >
               <div class="card-body">
                 <div v-if="item.check">
-                <i
-                  
-                  class="fa fa-check"
-                  aria-hidden="true"
-                  style="position: absolute; top: 0; right: 0"
-                ></i>
+                  <i class="fa fa-check item-booked" aria-hidden="true"></i>
                 </div>
-                <h5 class="card-title" style="height: 30px">
+                <h5 class="card-title">
                   {{ item.title }}
                 </h5>
                 <img
                   :src="getImage(item.img)"
                   class="card-img-top"
                   :alt="item.img"
-                  style="margin: 20px 5px; height: 100px"
                 />
                 <p class="card-text">{{ item.tagLine }}</p>
               </div>
@@ -44,8 +33,7 @@
         </div>
         <div
           v-if="basicData.length > end"
-          class="toggle-page right"
-          style="align-self: center"
+          class="toggle-page right right-arrow"
           @click="rightShift"
         >
           <i class="fas fa-chevron-right"></i>
@@ -153,5 +141,46 @@ export default defineComponent({
 .slide-enter-to,
 .slide-leave-from {
   opacity: 1;
+}
+
+.title {
+  display: flex;
+  margin: 20px;
+}
+
+.navigate {
+  display: flex;
+}
+
+.left-arrow {
+  align-self: center;
+  margin: 0 10px;
+}
+.right-arrow {
+  align-self: center;
+}
+
+.item-booked {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.card-row {
+  display: flex;
+}
+
+.card-inner-row {
+  padding: 20px;
+  display: contents;
+}
+
+.card-title {
+  height: 30px;
+}
+
+.card-img-top {
+  margin: 20px 5px;
+  height: 100px;
 }
 </style>

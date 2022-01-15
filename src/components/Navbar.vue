@@ -1,11 +1,7 @@
 <template>
   <div v-if="expandedData">
     <div class="slidein" :class="open ? 'open' : ''">
-      <img
-        :src="getImage()"
-        alt="more info image"
-        style="height:300px;width=300px"
-      />
+      <img class="img-more-info" :src="getImage()" alt="more info image" />
       <br />
       <br />
       <h3>{{ expandedData.title }}</h3>
@@ -119,5 +115,9 @@ export default defineComponent({
   top: 0;
   left: 0;
   padding: 0.5em;
+}
+.img-more-info {
+  height: 300px;
+  width: 300px;
 }
 </style>
